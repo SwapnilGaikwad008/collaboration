@@ -3,7 +3,10 @@ package com.niit.collaboration.model;
 import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
@@ -14,84 +17,64 @@ import org.springframework.stereotype.Component;
 public class Blog extends BaseDomain{
 	
 	@Id
-	public int id;
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private int blog_id;
 	
-	public String user_id;
+	private String blog_title;
+	@Lob
 	
-	public String title;
+	private String description;
 	
-	public String description;
+	private String email;
 	
-	public String emailId;
+	private String status;
 	
-	public Date date_time;
+	private String date_time;
 	
-	public String status;
+	@Lob
+	private String rejected;
 	
-	public String reason;
-	
-	public int getId() {
-		return id;
+	public int getBlog_id() {
+		return blog_id;
 	}
-
-	public void setId(int id) {
-		this.id = id;
+	public void setBlog_id(int blog_id) {
+		this.blog_id = blog_id;
 	}
-	
-	public String getUser_id() {
-			return user_id;
-		}
-
-	public void setUser_id(String user_id) {
-			this.user_id = user_id;
-		}
-
-	public String getTitle() {
-		return title;
+	public String getBlog_title() {
+		return blog_title;
 	}
-
-	public void setTitle(String title) {
-		this.title = title;
+	public void setBlog_title(String blog_title) {
+		this.blog_title = blog_title;
 	}
-
 	public String getDescription() {
 		return description;
 	}
-
 	public void setDescription(String description) {
 		this.description = description;
 	}
-
-	public String getEmailId() {
-		return emailId;
+	public String getEmail() {
+		return email;
 	}
-
-	public void setEmailId(String emailId) {
-		this.emailId = emailId;
+	public void setEmail(String email) {
+		this.email = email;
 	}
-
-	public Date getDate_time() {
-		return date_time;
-	}
-
-	public void setDate_time(Date date_time) {
-		this.date_time = date_time;
-	}
-
 	public String getStatus() {
 		return status;
 	}
-
 	public void setStatus(String status) {
 		this.status = status;
 	}
-
-	public String getReason() {
-		return reason;
+	public String getDate_time() {
+		return date_time;
 	}
-
-	public void setReason(String reason) {
-		this.reason = reason;
+	public void setDate_time(String date_time) {
+		this.date_time = date_time;
 	}
-
-}
+	public String getRejected() {
+		return rejected;
+	}
+	public void setRejected(String rejected) {
+		this.rejected = rejected;
+	}
+	
+	}

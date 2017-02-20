@@ -6,15 +6,21 @@ import com.niit.collaboration.model.Blog;
 
 public interface BlogDAO {
 	
-	public boolean SaveBlog(Blog blog);
+public boolean addBlog(Blog blog);
 	
-	public boolean Update(Blog blog);
+	// to approve A blog by ADMIN only.
+	public boolean approveBlog(Blog blog);
 	
-	public boolean DeleteBlog(Blog blog);
+	public boolean updateBlog(Blog blog);	
 	
-	public Blog getid(int id);
+	public boolean deleteBlog(Blog blog);
 	
-	public Blog getByid(int id);
+	public Blog getBlog(String title);
 	
-	public List<Blog> list();
+	public List<Blog> getBlogByUser(String email);
+	
+	public List<Blog> getApprovedBlogs();
+	
+	public List<Blog> getAllBlogs();
+
 }
