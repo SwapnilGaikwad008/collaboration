@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Blog - Home</title>
+</head>
+<body>
+<div>
+<table>
+	<tr>
+		<td>TITLE</td>
+		<td><input type="text" autofocus="autofocus" maxlength="200" placeholder="Enter Blog Title" ng-model="blog.blog_title"></td>
+	</tr>
+		<tr>
+		<td>USERNAME</td>
+		<td><input type="text" autofocus="autofocus" maxlength="200" placeholder="Enter Username" ng-model="blog.username"></td>
+	</tr>
+	<tr>
+		<td>DESCRIPTION</td>
+		<td><textarea rows="5" cols="50" placeholder="Describe your blog here" ng-model="blog.description"></textarea>
+	</tr>
+	<tr>
+		<td rowspan="2"><input type="button" ng-click="addBlog()" value="Submit Blog"></td>
+		<td><input type="reset" value="Clear"> </td>
+	</tr>	
+</table>
+</div>
+<hr>
+	<table border="1">
+		<tr>
+			<th>BLOG TITLE</th>
+			<th>DESCRIPTION</th>
+			<th>SUBMITTED BY </th>
+			<th>STATUS</th>
+		</tr>
+		
+		<tr ng-repeat="b in blogs">
+			<td>{{b.blog_title}}</td>
+			<td>{{b.description}}</td>
+			<td>{{b.username}}</td>
+			<td>{{b.status}}</td>
+		</tr>
+	</table>
+</body>
+</html>

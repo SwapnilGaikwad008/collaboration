@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>User List</title>
+</head>
+<body>
+	<table border="1">
+		<tr>
+			<th>USERNAME</th>
+			<th>MAIL ID</th>
+			<th>ONLINE </th>
+			<th>Date of Birth</th>
+		</tr>
+		
+		<tr ng-repeat="u in users">
+			<td>{{u.username}}</td>
+			<td>{{u.mail_id}}</td>
+			<td>{{u.status}}</td>
+			<td>{{u.birthdate}}</td>
+		</tr>
+	</table>
+<div ng-controller='UserController'>
+<h2> {{message}} </h2></div>
+</body>
+</html>
