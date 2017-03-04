@@ -6,6 +6,7 @@
 <title>Collaboration Project</title>
 </head>
 <body>
+<div ng-controller="UserController as ctrl">
 <h1 style="text-align: center;">Collaboration Project</h1>
 <hr>
 <a href = "#/login">Login</a>
@@ -18,19 +19,28 @@
 <br>
 <a href = "#/viewJobs">View Jobs</a>
 <br>
+<a ng-click = "ctrl.logout()">Logout</a>
+<br>
 <hr>
 
-
 <div data-ng-view></div>
+</div>
 </body>
 
-<script src="lib/angular.min.js"></script>
-<script src="lib/angular-route.js"></script>
+<!-- <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.js"></script> -->
+
+<script src="js/angular.min.js"></script>
+<script src="js/angular-route.js"></script>
+<script src="js/angular-cookies.js"></script>
+<script src="js/angular-cookies.min.js"></script>
+<script src="js/jquery-3.1.1.min.js"></script>
+
 <script src="js/app.js"></script>
-<script src="js/UserController.js"></script>
-<script src="js/UserService.js"></script>
-<script src="js/BlogController.js"></script>
-<script src="js/BlogService.js"></script>
-<script src="js/JobController.js"></script>
-<script src="js/JobService.js"></script>
+<script src="C_user/UserController.js"></script>
+<script src="C_user/UserService.js"></script>
+<script src="C_blog/BlogController.js"></script>
+<script src="C_blog/BlogService.js"></script>
+<script src="C_job/JobController.js"></script>
+<script src="C_job/JobService.js"></script>
+
 </html>

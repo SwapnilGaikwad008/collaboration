@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Jobs</title>
+</head>
+<body>
+	<table border="1">
+	<tr>
+		<td>Title</td>
+		<td>Position</td>
+		<td>Company</td>
+		<td>Package</td>
+		<td>Location</td>
+		<td>Date Added</td>
+		<td>Vacancies</td>
+		<td>10th %</td>
+		<td>12th %</td>
+		<td>UG %</td>
+		<td>Description</td>
+	</tr>
+	
+	<tr ng-repeat="job in jobs">
+			<td>{{job.title}}</td>
+			<td>{{job.position}}</td>
+			<td>{{job.company}}</td>
+			<td>{{job.salary}}</td>
+			<td>{{job.location}}</td>
+			<td>{{job.date}}</td>
+			<td>{{job.vacancy}}</td>
+			<td>{{job.q_10}}</td>
+			<td>{{job.q_12}}</td>
+			<td>{{job.q_ug}}</td>
+			<td>{{job.description}}</td>	
+		</tr>
+	</table>
+	<hr>
+
+	<table>
+	<tr>
+		<td>TITLE</td>
+		<td><input type="text" autofocus="autofocus" maxlength="200" placeholder="Enter Job Title" ng-model="job.title"></td>
+	</tr>
+	
+	<tr>
+		<td>POSITION</td>
+		<td><input type="text" maxlength="200" ng-model="job.position"></td>
+	</tr>
+	
+	<tr>
+		<td>COMPANY</td>
+		<td><input type="text" maxlength="200" ng-model="job.company"></td>
+	</tr>
+	
+	<tr>
+		<td>PACKAGE</td>
+		<td><input type="text" maxlength="50" ng-model="job.salary"></td>
+	</tr>
+	
+	<tr>
+		<td>LOCATION</td>
+		<td><input type="text" maxlength="200" ng-model="job.location"></td>
+	</tr>
+	
+	<tr>
+		<td>USERNAME</td>
+		<td><input type="text" maxlength="50" ng-model="job.username"></td>
+	</tr>
+	
+	<tr>
+		<td>VACANCY</td>
+		<td><input type="text" maxlength="5" ng-model="job.vacancy"></td>
+	</tr>
+	
+	<tr>
+		<td>MIN 10th %</td>
+		<td><input type="text" maxlength="10" ng-model="job.q_10"></td>
+	</tr>
+	
+	<tr>
+		<td>MIN 12th %</td>
+		<td><input type="text" maxlength="10" ng-model="job.q_12"></td>
+	</tr>
+	
+	<tr>
+		<td>MIN UG %</td>
+		<td><input type="text" ng-model="job.q_ug"></td>
+	</tr>
+	
+	<tr>
+		<td>Description</td>
+		<td><textarea rows="5" cols="50" placeholder="Describe your job here" ng-model="job.description"></textarea></td>
+	</tr>
+	
+	<tr>
+		<td rowspan="2"><input type="button" ng-click="addJob()" value="Submit Job"></td>
+		<td><input type="reset" value="Clear"> </td>
+	</tr>
+	</table>	
+</body>
+</html>

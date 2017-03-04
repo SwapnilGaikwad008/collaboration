@@ -7,7 +7,8 @@
 <body>
 Welcome to login Page
 <br>
-<form>
+<div ng-controller = "UserController as ctrl">
+<form name="form" ng-submit="ctrl.login()" role="form">
 <table>
 	<tr>
 		<td> Username: </td>
@@ -19,14 +20,14 @@ Welcome to login Page
 	</tr>
 	
 	<tr>
-		<td style="text-align: center;"><td><input type="button" ng-click="login()" value="Login"></td></td>
+		<td style="text-align: center;"><td><input type="submit" value="Login"></td>
 		<td style="text-align: center;"><input type="reset" value="Clear"></td>
 	</tr>
 </table>
 </form>
-	
+</div>
 	<br>
-	<p>You wrote: {{ username }}</p>
+	<p>{{message}}</p>
 
 </body>
 </html>
