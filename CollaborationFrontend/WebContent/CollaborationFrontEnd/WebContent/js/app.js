@@ -47,9 +47,7 @@ app.run( function ($rootScope, $location, $cookieStore, $http) {
 
 	 $rootScope.$on('$locationChangeStart', function (event, next, current) {
 		 console.log("$locationChangeStart")
-		 //http://localhost:8080/Collaboration/addjob
-	        // redirect to login page if not logged in and trying to access a restricted page
-	     
+		
 		 var userPages = ['/viewUsers']
 		 var adminPages = ["/viewBlogs","/viewJobs"]
 		 
