@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.niit.collaboration.dao.UserDAO;
+import com.niit.collaboration.model.Blog;
 import com.niit.collaboration.model.User;
 
 @SuppressWarnings("deprecation")
@@ -136,4 +137,31 @@ public class UserDAOImpl implements UserDAO
 			return false;
 		}
 	}
-}
+
+	@Transactional
+	public List<User> getUserByUsername(String username) {
+		
+		log.info("User By username");
+		try{
+			String hql_string = "FROM User WHERE username = '"+username+"'";
+			@SuppressWarnings("rawtypes")
+			Query query = sessionFactory.getCurrentSession().createQuery(hql_string);
+			@SuppressWarnings("unchecked")
+			List<User> list = query.list();
+			if (list != null && !list.isEmpty()) 
+			{
+				log.info("User List Retrieved");
+				return list;
+			}
+			log.info("User List Mostly Empty");
+			return null;
+		} 
+		catch(Exception ex)
+		{
+			log.info("Error Getting User List");
+			ex.printStackTrace();
+			return null;
+		}
+			
+		}
+	}

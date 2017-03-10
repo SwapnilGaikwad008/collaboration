@@ -16,6 +16,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import com.niit.collaboration.model.Blog;
 import com.niit.collaboration.model.BlogComment;
 import com.niit.collaboration.model.Event;
+import com.niit.collaboration.model.Friend;
 import com.niit.collaboration.model.Job;
 import com.niit.collaboration.model.JobApplied;
 import com.niit.collaboration.model.User;
@@ -45,7 +46,7 @@ public class ApplicationContextConfiguration
 			Properties properties = new Properties();
 			
 			properties.put("hibernate.dialect", "org.hibernate.dialect.Oracle10gDialect");
-			properties.put("hibernate.hbm2ddl.auto", "update");
+	//		properties.put("hibernate.hbm2ddl.auto", "update");
 			properties.put("hibernate.show_sql", "true");
 			
 			return properties;
@@ -65,7 +66,8 @@ public class ApplicationContextConfiguration
 			sessionBuilder.addAnnotatedClass(JobApplied.class);
 			sessionBuilder.addAnnotatedClass(Event.class);
 			sessionBuilder.addAnnotatedClass(BlogComment.class);
-			
+			sessionBuilder.addAnnotatedClass(Friend.class);
+
 			return sessionBuilder.buildSessionFactory();
 		}
 		

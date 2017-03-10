@@ -56,17 +56,17 @@ public class UserController {
 	}
 
 	@GetMapping("/getUser-{id}")
-	public ResponseEntity<User> getUser(@PathVariable("id") String userName) {
-		user = userDAO.getUser(userName);
+	public ResponseEntity<List<User>> getUser(@PathVariable("id") String username) {
+		List<User> list = userDAO.getUserByUsername(username);
 
 		if (user == null) {
 			user = new User();
 			user.setErrorCode("404");
-			user.setErrorMsg("User " + userName + " is not found.");
+			user.setErrorMsg("User  is not found.");
 		}
 		user.setErrorCode("200");
-		user.setErrorMsg("User " + userName + " is found.");
-		return new ResponseEntity<User>(user, HttpStatus.OK);
+		user.setErrorMsg("User  is found.");
+		return new ResponseEntity<List<User>>(list, HttpStatus.OK);
 	}
 
 	@PostMapping("/login")
@@ -116,6 +116,7 @@ public class UserController {
 	@PostMapping("/add_User")
 	public ResponseEntity<User> addUser(@RequestBody User user) 
 	{	    
+		
 	    user.setStatus('N');
 	    user.setIsOnline('N');
 		boolean value = userDAO.addUser(user);
