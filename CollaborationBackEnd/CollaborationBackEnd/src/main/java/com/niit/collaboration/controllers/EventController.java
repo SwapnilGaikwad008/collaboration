@@ -1,6 +1,8 @@
 package com.niit.collaboration.controllers;
 
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -11,6 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -28,80 +31,47 @@ public class EventController
 	@Autowired
 	private Event event;
 	
-	@GetMapping("/getEvents")
-	public ResponseEntity<List<Event>> listEvent()
-	{
-		log.info("Entering List Event");
-		List<Event> list = eventDAO.listEvent();
-		if(list.isEmpty())
-		{
-			event.setErrorCode("400");
-			event.setErrorMsg("List seems to be empty");
-			list.add(event);
-			return new ResponseEntity<List<Event>> (list,HttpStatus.OK);
-		}
-		else
-		{
-			event.setErrorCode("200");
-			event.setErrorMsg("List Retrieved");
-			return new ResponseEntity<List<Event>> (list,HttpStatus.OK);
-		}
-	}
-	
 	@PostMapping("/addEvent")
-	public ResponseEntity<Event> addEvent(@RequestBody Event event)
-	{
-		log.info("Entering Event add");
-		boolean value = eventDAO.addEvent(event);
-		if(value)
-		{
-			event.setErrorCode("200");
-			event.setErrorMsg("Event has been added");
-		}
-		else
-		{
-			event = new Event();
-			event.setErrorCode("400");
-			event.setErrorMsg("Event has not been added");
-		}
-		return new ResponseEntity<Event> (event, HttpStatus.OK);
+	public ResponseEntity<Event>addEvent(@RequestBody Event event){
+		eventDAO.save(event);
+		event.setErrorCode("200");
+		event.setErrorMsg("SUCCESS");
+		return new ResponseEntity<Event>(event, HttpStatus.OK);
 	}
 	
-	@GetMapping("/deleteEvent-{id}")
-	public ResponseEntity<Event> delete(@PathVariable ("id") int id)
-	{
-		log.info("Entering Event delete");
-		boolean value = eventDAO.deleteEvent(id);
-		if(value)
-		{
-			event.setErrorCode("200");
-			event.setErrorMsg("Event has been deleted");
+	@GetMapping("/listEvent")
+	public ResponseEntity<List<Event>> getList(){
+		List<Event> list = eventDAO.list();
+		DateFormat df = new SimpleDateFormat("dd-MMM-yyyy");
+		for (Event e : list) {
+			String d = df.format(e.getDate_time());
+			e.setDate4(d);
 		}
-		else
-		{
-			event = new Event();
-			event.setErrorCode("400");
-			event.setErrorMsg("Event has not been deleted");
-		}
-		return new ResponseEntity<Event> (event, HttpStatus.OK);	
+		event.setErrorCode("200");
+		event.setErrorMsg("Success.....");
+		return new ResponseEntity<List<Event>>(list, HttpStatus.OK);
 	}
 	
-	@GetMapping("/getEvent-{id}")
-	public ResponseEntity<Event> getEvent(@PathVariable ("id") int id)
-	{
-		log.info("Entering Get Event");
-		event = eventDAO.getEvent(id);
-		if(event == null)
-		{
-			event = new Event();
-			event.setErrorCode("400");
-			event.setErrorMsg("Event is not found");		
-		}
-		else
-		{
-			event.setErrorCode("200");
-			event.setErrorMsg("Event found");
-		}
-		return new ResponseEntity<Event> (event, HttpStatus.OK);
+	@GetMapping("/delete_event-{id}")
+	public ResponseEntity<Event> deleteEvent(@PathVariable("id") String id){
+		eventDAO.delete(id);
+		event.setErrorCode("200");
+		event.setErrorMsg("Deleted Successfully");
+		return new ResponseEntity<Event>(event, HttpStatus.OK);
 	}
+	
+	
+	@PutMapping("/updateEvent")
+	public ResponseEntity<Event>editEvent(@RequestBody Event event)
+	{
+		eventDAO.update(event);
+		event.setErrorCode("200");
+		event.setErrorMsg("Edited SuccessFully");
+		return new ResponseEntity<Event>(event, HttpStatus.OK);
+	}
+	
+	
+	
+	
+	
 }

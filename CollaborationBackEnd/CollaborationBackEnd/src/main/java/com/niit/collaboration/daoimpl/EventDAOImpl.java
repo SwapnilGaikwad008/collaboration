@@ -38,87 +38,30 @@ public class EventDAOImpl implements EventDAO
 			ex.printStackTrace();
 		}
 	}
-	
+   
 	@Transactional
-	public boolean addEvent(Event event) 
-	{
-		try
-		{
-			sessionFactory.getCurrentSession().save(event);
-			log.info("Event has been saved");
-			return true;
-		} 
-		catch(Exception ex)
-		{
-			ex.printStackTrace();
-			log.error("Error saving Event");
-			return false;
-		}
+	public void save(Event event) {
+		sessionFactory.getCurrentSession().saveOrUpdate(event);
 	}
-
-	@SuppressWarnings({ "rawtypes" })
+ 
 	@Transactional
-	public boolean deleteEvent(int id) 
-	{
-		log.info("Entering Delete Event");
-		try 
-		{
-			String sql = "FROM Event where id = '"+id+"'";
-			Query query = sessionFactory.getCurrentSession().createQuery(sql);
-			Event event = (Event) query.uniqueResult();
-			if(event == null)
-			{
-				log.info("Event Not Found");
-				return false;
-			}
-			
-			sessionFactory.getCurrentSession().delete(event);
-			log.info("Success delete Event");
-			return true;
-		}
-		catch (HibernateException e) 
-		{
-			log.error("Error Deleting Event");
-			e.printStackTrace();
-			return false;
-		}
+	public void update(Event event) {
+		sessionFactory.getCurrentSession().update(event);		
 	}
 
 	@Transactional
-	public Event getEvent(int id)
-	{
-		try
-		{
-			String sql = "FROM Event where id = '"+id+"'";
-			@SuppressWarnings("rawtypes")
-			Query query = sessionFactory.getCurrentSession().createQuery(sql);
-			Event event = (Event) query.uniqueResult();
-			return event;
-		}
-		catch(HibernateException ex)
-		{
-			ex.printStackTrace();
-			return null;	
-		}
+	public void delete(String id) {
+       Event event = new Event();
+       event.setId(id);
+       sessionFactory.getCurrentSession().delete(event);
 	}
 
 	@Transactional
-	public List<Event> listEvent() 
-	{
-		try
-		{
-			String sql = "FROM Event";
-			@SuppressWarnings("rawtypes")
-			Query query = sessionFactory.getCurrentSession().createQuery(sql);
-			@SuppressWarnings("unchecked")
-			List<Event> events = query.list();
-			return events;
-		}
-		catch(HibernateException ex)
-		{
-			ex.printStackTrace();
-			return null;	
-		}
+	public List<Event> list() {
+		String hql = "from Event";
+		Query query = sessionFactory.getCurrentSession().createQuery(hql);
+		return query.list();
 	}
+
 
 }

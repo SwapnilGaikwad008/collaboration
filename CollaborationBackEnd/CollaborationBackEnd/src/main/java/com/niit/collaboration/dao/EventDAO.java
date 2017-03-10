@@ -7,12 +7,12 @@ import com.niit.collaboration.model.Event;
 public interface EventDAO {
 
 
-	public boolean addEvent(Event event);
+	public void save(Event event);
 	
-	public boolean deleteEvent(int id);
+	public void update(Event event);
 	
-	public Event getEvent(int id);
+	public void delete(String id);
 	
-	public List<Event> listEvent();
+	public List<Event> list();
 	
 }

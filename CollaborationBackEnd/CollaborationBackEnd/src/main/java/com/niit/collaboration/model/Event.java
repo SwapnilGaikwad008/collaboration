@@ -2,13 +2,12 @@ package com.niit.collaboration.model;
 
 import java.util.Date;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Lob;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import org.springframework.stereotype.Component;
 
@@ -16,29 +15,30 @@ import org.springframework.stereotype.Component;
 @Table(name = "C_EVENT")
 @Component
 public class Event extends BaseDomain {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int id;
+	private String id;
 	private String name;
-	
-	@Column(name = "EVENT_DATE")
-	private Date date;
-	
-	@Lob
-	private String description;
-	
-	private String time;
 	private String venue;
-	
-	@Column(name = "POSTED")
-	private String postedTime;
-	
-	public int getId() {
+	private Date date_time;
+	private String description;
+	@Transient
+	private String date4;
+
+	public String getDate4() {
+		return date4;
+	}
+
+	public void setDate4(String date4) {
+		this.date4 = date4;
+	}
+
+	public String getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 
@@ -50,12 +50,20 @@ public class Event extends BaseDomain {
 		this.name = name;
 	}
 
-	public Date getDate() {
-		return date;
+	public String getVenue() {
+		return venue;
 	}
 
-	public void setDate(Date date) {
-		this.date = date;
+	public void setVenue(String venue) {
+		this.venue = venue;
+	}
+
+	public Date getDate_time() {
+		return date_time;
+	}
+
+	public void setDate_time(Date date_time) {
+		this.date_time = date_time;
 	}
 
 	public String getDescription() {
@@ -65,29 +73,4 @@ public class Event extends BaseDomain {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-
-	public String getTime() {
-		return time;
-	}
-
-	public void setTime(String time) {
-		this.time = time;
-	}
-
-	public String getVenue() {
-		return venue;
-	}
-
-	public void setVenue(String venue) {
-		this.venue = venue;
-	}
-
-	public String getPostedTime() {
-		return postedTime;
-	}
-
-	public void setPostedTime(String postedTime) {
-		this.postedTime = postedTime;
-	}
-
 }
