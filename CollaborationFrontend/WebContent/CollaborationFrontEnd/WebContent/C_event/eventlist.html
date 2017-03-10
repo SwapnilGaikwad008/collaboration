@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Event List</title>
+</head>
+<body>
+<form>
+<h1>List of Events</h1>
+	<table>
+		<tr>
+			<th>Event ID</th>
+			<th>Event Name</th>
+			<th>Event Description</th>
+			<th>Event Venue</th>
+			<th>Event Date</th>
+		</tr>
+		<tr ng-repeat="e in events">
+			<td>{{e.id}}</td>
+			<td>{{e.name}}</td>
+			<td>{{e.description}}</td>
+			<td>{{e.venue}}</td>
+			<td>{{e.date4}}</td>
+		</tr>
+	</table>
+
+</form>
+</body>
+</html>

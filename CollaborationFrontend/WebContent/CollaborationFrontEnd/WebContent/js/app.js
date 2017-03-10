@@ -39,6 +39,16 @@ app.config(function($routeProvider)
 		templateUrl : 'C_job/jobs.html',
 		controller : 'JobController'	
 	})
+	.when('/event', {
+		templateUrl : 'C_event/event.html',
+		controller : 'EventController'
+	})
+
+	.when('/eventlist', {
+		templateUrl : 'C_event/eventlist.html',
+		controller : 'EventController'
+	})
+
 	
 	.otherwise({redirectTo: '/'});
 });
@@ -86,8 +96,7 @@ app.run( function ($rootScope, $location, $cookieStore, $http) {
 					 
 					 }
 	        	}
-	 }
-	       );
+	 });
 	 
 	 
 	 // keep user logged in after page refresh

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Event</title>
+</head>
+<body>
+<form>
+ <input type="text" ng-model="event.id" placeholder="Enter Event Id" required>
+ <br>
+ <input type="text" ng-model="event.name" placeholder="Enter Event Name" required>
+ <br>
+ <input type="text" ng-model="event.description" placeholder="Enter Event description" required>
+ <br>
+ <input type="text" ng-model="event.venue" placeholder="Enter event Venue" required>
+ <br>
+ <input type="date" ng-model="event.date_time" required>
+ <br>
+ <input type="button" ng-click="registerEvent()" value="Register" title="Click to Register Event">
+</form>
+</body>
+</html>
