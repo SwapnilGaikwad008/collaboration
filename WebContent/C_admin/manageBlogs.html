@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<title>Insert title here</title>
+<style type="text/css">
+body
+{
+    background-image: url("images/admin.jpg");
+    background-repeat: no-repeat;
+    background-size: 100%; 
+    background-attachment: fixed;
+}
+.row
+{
+    background-image: url("images/white.jpg");
+    background-repeat: no-repeat;
+    background-size: 100%; 
+    background-attachment: fixed;
+}
+</style>
+</head>
+<body>
+<h1 style="text-align: center; color: white"><strong>Manage Blogs</strong></h1>
+<div  data-ng-controller="AdminController as ctrl">
+<div class="container" data-ng-if="blogs"  data-ng-repeat="b in blogs">
+<br>
+	<div class="row" style=" box-shadow: 5px 5px 5px black;">
+				
+		<div class="col-sm-9">
+			<table class="table table-responsive">
+				<tr>
+					<td style="color: black"><h3><strong>{{b.blog_title}}</strong></h3><h5> written by {{b.username}}</h5></td>
+				</tr>
+				<tr>
+					<td style="color: black">Status - {{b.status}}</td>
+				</tr>
+				<tr>
+					<td style="color: black">{{b.description}}</td>
+				</tr>
+			</table>					
+		</div>
+		<div class="col-sm-3">
+		<table class="table table-hover">
+		<tr>
+			<td style="text-align: center;"><a data-ng-if="b.status != 'Approved'" class="btn btn-success btn-md" href="" data-ng-click="ctrl.acceptBlog(b)" class="btn">ACCEPT BLOG</a></td>	
+		</tr>
+		<tr>
+			<td style="text-align: center;"><a data-ng-if="b.status != 'Rejected'" class="btn btn-danger btn-md" href="" data-ng-click="ctrl.rejectBlog(b)" class="btn">REJECT BLOG</a></td>
+		</tr>
+		</table>
+		</div>
+	</div>
+</div>
+</div>
+</body>
+</html>

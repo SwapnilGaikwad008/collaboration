@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<title>Insert title here</title>
+<style type="text/css">
+body
+{
+    background-image: url("images/admin.jpg");
+    background-repeat: no-repeat;
+    background-size: 100%; 
+    background-attachment: fixed;
+}
+.table
+{
+    background-image: url("images/white.jpg");
+    background-repeat: no-repeat;
+    background-size: 100%; 
+    background-attachment: fixed;
+}
+</style>
+</head>
+<body>
+	<ul class="nav nav-pills">
+		 <li role="presentation"><a class="btn btn-default btn-block" data-toggle="tab" href="#manageJobs">MANAGE JOBS</a></li>
+		 <li role="presentation"><a class="btn btn-default btn-block" data-toggle="tab" href="#addJobs">ADD NEW JOB</a></li>
+		 <li role="presentation"><a class="btn btn-default btn-block" data-toggle="tab" href="#appliedJobs">JOB APPLICATIONS</a></li>
+	</ul>
+<div class="tab-content">
+	<div id="manageJobs" class="tab-pane fade in active">
+	<h1 style="text-align: center; color: white"><strong>Manage Jobs</strong></h1>
+	<div class="container" data-ng-controller="AdminController as actrl">
+		<div class="row" data-ng-repeat="j in jobs">
+			<div class="col-sm-12">
+				<table class="table" style="box-shadow: 5px 5px 5px #000;">
+					<tr>
+						<td colspan="3"><h3>{{j.title}}</h3></td>
+					</tr>
+					<tr>
+						<td>Organization: {{j.company}}</td>
+						<td>Position: {{j.position}}</td>
+						<td>Location: {{j.location}}</td>
+					</tr>
+					<tr>
+						<td>Package: {{j.salary}}</td>
+						<td>Job Status: {{j.status}}</td>
+						<td>Vacancies: {{j.vacancy}}</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>Minimum 10th: {{j.q_10}}</td>
+						<td>Minimum 12th: {{j.q_12}}</td>
+						<td>Minimum UG %: {{j.q_ug}}</td>
+					</tr>					
+					<tr>
+						<td colspan="3">Description: {{j.description}}</td>
+					</tr>
+					<tr>
+						<td colspan="3"><p style="text-align: right"><a href="" class="btn btn-danger" data-ng-click="actrl.invalidateJob(j.job_id)">Invalidate Job</a></p>
+					</tr>
+				</table>
+			</div>
+		
+		</div>
+	</div>
+	</div>
+	
+	<div id="addJobs" class="tab-pane fade">
+	<div class="row" data-ng-controller="JobController as ctrl">
+	<div class="col-sm-3"></div>
+		<div class="col-sm-6">
+			<form role="form" data-ng-submit="ctrl.addJobs()">
+				<h2  style="text-align: center; color: white"><strong>Add New Job</strong></h2>
+					<table class="table table-hover" style="color:blue; box-shadow: 5px 5px 5px #000;" >
+						<tr>
+							<th>Job Title</th>
+							<td><input type="text" maxlength="255" placeholder="Enter Job Title" required="required" data-ng-model="job.title"/></td>
+						</tr>
+						<tr>
+							<th>Organization Name</th>
+							<td><input type="text" maxlength="200" placeholder="Enter Company Name" required="required" data-ng-model="job.company"/></td>
+						</tr>
+						<tr>
+							<th>Location</th>
+							<td><input type="text" maxlength="200" placeholder="Enter Job Location" required="required" data-ng-model="job.location"/></td>
+						</tr>
+						<tr>
+							<th>Position Offered</th>
+							<td><input type="text" maxlength="200" placeholder="Enter Offered Position" required="required" data-ng-model="job.position"/></td>
+						</tr>
+						<tr>
+							<th>Package Offered</th>
+							<td><input type="text" maxlength="100" placeholder="Enter Package Offered" required="required" data-ng-model="job.salary"/></td>
+						</tr>
+						<tr>
+							<th>Qualification 10th</th>
+							<td><select data-ng-model='job.q_10' required="required">
+			                        <option value="NIL"></option>
+			                        <option value="50.0%">50.0%</option>
+			                        <option value="55.0%">55.0%</option>
+			                        <option value="60.0%">60.0%</option>
+			                        <option value="65.0%">65.0%</option>
+			                        <option value="70.0%">70.0%</option>
+			                        <option value="75.0%">75.0%</option>
+                    		</select></td>
+						</tr>
+						<tr>
+							<th>Qualification 12th</th>
+							<td><select data-ng-model='job.q_12' required="required">
+			                        <option value="NIL"></option>
+			                        <option value="50.0%">50.0%</option>
+			                        <option value="55.0%">55.0%</option>
+			                        <option value="60.0%">60.0%</option>
+			                        <option value="65.0%">65.0%</option>
+			                        <option value="70.0%">70.0%</option>
+			                        <option value="75.0%">75.0%</option>
+                    		</select></td>
+						</tr>
+						<tr>
+							<th>Qualification UG</th>
+							<td><select data-ng-model='job.q_ug' required="required">
+									<option value="NIL"></option>
+			                        <option value="50.0%">50.0%</option>
+			                        <option value="55.0%">55.0%</option>
+			                        <option value="60.0%">60.0%</option>
+			                        <option value="65.0%">65.0%</option>
+			                        <option value="70.0%">70.0%</option>
+			                        <option value="75.0%">75.0%</option>
+                    		</select></td>
+						</tr>
+						<tr>
+							<th>Vacancy Available</th>
+							<td><input type="text" maxlength="5" placeholder="Vacancies Available" required="required"  data-ng-model="job.vacancy"/></td>
+						</tr>
+						<tr>
+							<th>Description</th>
+							<td><textarea rows="5" cols="50" placeholder="Describe offered position here" required="required" data-ng-model="job.description"></textarea></td>
+						</tr>
+						<tr>
+							<td><input type="submit" class="btn btn-success" value="Add Job &raquo;"/></td>
+							<td><input type="reset" class="btn btn-danger" value="Reset Data"/></td>
+						</tr>
+					</table>
+			</form>
+		</div>
+		<div class="col-sm-3"></div>
+	</div>
+	</div>
+	
+	<div id="appliedJobs" class="tab-pane fade">
+		<h2  style="text-align: center; color: white"><strong>Job Applications</strong></h2>
+		
+		<div class="row">
+			<div class="col-sm-3"></div>
+			<div class="col-sm-7"></div>
+			<div class="col-sm-2">
+				<table>
+					<tr><td ><label class="glyphicon glyphicon-search"></label></td><td width="250px" style="text-align: right;"><input type="text"  style="background-color: "";" class="form-control empty" placeholder="Company Name" data-ng-model="search"></td></tr>
+					<tr><td>&nbsp;<br></td></tr>
+				</table>
+			</div>
+		</div>
+		
+		<div class="row" data-ng-repeat="aj in appliedJobs|filter:{company:search}">
+			<div class="col-sm-12">
+				<table class="table" style="box-shadow: 5px 5px 5px #000;">
+					<tr>
+						<td><h4><strong>{{aj.username}}</strong></h4></td>
+						<td>Applied Date : {{aj.date}}</td>
+					</tr>
+					<tr>
+						<td>Organization: {{aj.company}}</td>
+						<td>Position: {{aj.position}}</td>
+						<td>Location: {{aj.location}}</td>
+					</tr>
+				</table>
+			</div>
+		
+		</div>
+	</div>
+</div>
+</body>
+</html>

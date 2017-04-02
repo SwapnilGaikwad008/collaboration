@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<title>Jobs</title>
+<style type="text/css">
+body
+{
+    background-image: url("images/jobs.jpg");
+    background-repeat: no-repeat;
+    background-size: 100%; 
+    background-attachment: fixed;
+}
+.table
+{
+    background-image: url("images/white.jpg");
+    background-repeat: no-repeat;
+    background-size: 100%; 
+    background-attachment: fixed;
+}
+.btn-primary,
+.btn-primary:hover,
+.btn-primary:active,
+.btn-primary:visited,
+.btn-primary:focus
+{
+    background-color: #0000b3;
+    border-color: #000;
+}
+</style>
+</head>
+<body>
+	<h1 style="text-align: center; color: black"><strong>Available Jobs</strong></h1>
+	<div class="container" data-ng-controller="UserController as ctrl">
+		<div class="row" data-ng-repeat="j in jobs">
+			<div class="col-sm-12">
+				<table class="table" style="box-shadow: 5px 5px 5px #111; font: bold; color: black">
+					<tr style="font: bold;">
+						<td colspan="3"><h3><strong>{{j.title}}</strong></h3></td>
+					</tr>
+					<tr style="font: bold;color: black">
+						<td>Organization: {{j.company}}</td>
+						<td>Position: {{j.position}}</td>
+						<td>Location: {{j.location}}</td>
+					</tr>
+					<tr style="font: bold;">
+						<td>Package: {{j.salary}}</td>
+						<td>Job Status: OPEN</td>
+						<td>Vacancies: {{j.vacancy}}</td>
+						<td></td>
+					</tr>
+					<tr style="font: bold;">
+						<td>Minimum 10th: {{j.q_10}}</td>
+						<td>Minimum 12th: {{j.q_12}}</td>
+						<td>Minimum UG %: {{j.q_ug}}</td>
+					</tr>					
+					<tr style="font: bold;">
+						<td colspan="3">Description: {{j.description}}</td>
+					</tr>
+					<tr>
+						<td colspan="3"><p style="text-align: right;color: black;" ><a href="" class="btn btn-default btn-lg" data-ng-click="ctrl.applyJob(j)">Apply Job</a></p>
+					</tr>
+				</table>
+			</div>
+		
+		</div>
+	</div>
+</body>
+</html>

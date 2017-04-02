@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<title>Insert title here</title>
+<style type="text/css">
+body
+{
+    background-image: url("images/admin.jpg");
+    background-repeat: no-repeat;
+    background-size: 100%; 
+    background-attachment: fixed;
+}
+.table
+{
+    background-image: url("images/white.jpg");
+    background-repeat: no-repeat;
+    background-size: 100%; 
+    background-attachment: fixed;
+}
+</style>
+</head>
+<body>
+	<ul class="nav nav-pills">
+		 <li role="presentation"><a class="btn btn-default btn-block" data-toggle="tab" href="#manageEvents">MANAGE EVENTS</a></li>
+		 <li role="presentation"><a class="btn btn-default btn-block" data-toggle="tab" href="#addEvents">POST NEW EVENT</a></li>
+	</ul>
+
+<div class="tab-content">
+	<div id="manageEvents" class="tab-pane fade in active">
+	<h1 style="text-align: center; color: white"><strong>Manage Events</strong></h1>
+	<div class="container" data-ng-controller="AdminController as aCtrl">
+		<div class="row" data-ng-repeat="e in events">
+			<div class="col-sm-12">
+				<table class="table" style="box-shadow: 5px 5px 5px black;">
+					<tr>
+						<td colspan="3"><h3>{{j.title}}</h3></td>
+					</tr>
+					<tr>
+						<td><h4>{{e.name}}</h4></td>
+					</tr>
+					<tr>
+						<td colspan="2"><strong>Date:</strong> {{e.date}}</td>
+						<td><strong>Time:</strong> {{e.time}}</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td colspan="2"><strong>Event Venue:</strong> {{e.venue}}</td>
+						<td><strong>Posted at:</strong> {{e.postedTime}}</td>
+					</tr>					
+					<tr>
+						<td colspan="3"><strong>Description:</strong> {{e.description}}</td>
+					</tr>
+					<tr>
+						<td colspan="3"><p style="text-align: right"><a href="" class="btn btn-danger" data-ng-click="aCtrl.removeEvent(e.id)">Remove Event</a></p>
+					</tr>
+				</table>
+			</div>
+		
+		</div>
+	</div>
+	</div>
+	
+	<div id="addEvents" class="tab-pane fade">
+	<div class="row" data-ng-controller="EventController as ctrl">
+	<div class="col-sm-3"></div>
+		<div class="col-sm-6">
+			<form role="form" data-ng-submit="ctrl.addEvents()">
+				<h2 style="text-align: center; color: white"><strong>Add New Event</strong></h2>
+					<table class="table table-hover" style="color:blue; box-shadow: 5px 5px 5px black;" >
+						<tr>
+							<th>Event Name</th>
+							<td><input type="text" maxlength="255" placeholder="Event Title" required="required" data-ng-model="event.name"/></td>
+						</tr>
+						<tr>
+							<th>Event Date</th>
+							<td><input type="date" placeholder="DD/MM/YYYY" required="required" data-ng-model="event.date"/></td>
+						</tr>
+						<tr>
+							<th>Event Time</th>
+							<td><select data-ng-model='event.time' required="required">
+			                        <option value="NIL">TIME</option>
+			                        <option value="00:00">00:00</option>
+			                        <option value="00:00">01:00</option>
+			                        <option value="00:00">02:00</option>
+			                        <option value="00:00">03:00</option>
+			                        <option value="00:00">04:00</option>
+			                        <option value="00:00">05:00</option>
+			                        <option value="00:00">06:00</option>
+			                        <option value="00:00">07:00</option>
+			                        <option value="00:00">08:00</option>
+			                        <option value="00:00">09:00</option>
+			                        <option value="00:00">10:00</option>
+			                        <option value="00:00">11:00</option>
+			                        <option value="00:00">12:00</option>
+			                        <option value="00:00">13:00</option>
+			                        <option value="00:00">14:00</option>
+			                        <option value="00:00">15:00</option>
+			                        <option value="00:00">16:00</option>
+			                        <option value="00:00">17:00</option>
+			                        <option value="00:00">18:00</option>
+			                        <option value="00:00">19:00</option>
+			                        <option value="00:00">20:00</option>
+			                        <option value="00:00">21:00</option>
+			                        <option value="00:00">22:00</option>
+			                        <option value="00:00">23:00</option>
+                    		</select></td>
+                    	</tr>
+						<tr>
+							<th>Event Venue</th>
+							<td><input type="text" maxlength="200" placeholder="Event Location" required="required" data-ng-model="event.venue"/></td>
+						</tr>
+						<tr>
+							<th>Description</th>
+							<td><textarea rows="5" cols="50" placeholder="Event Description" required="required" data-ng-model="event.description"></textarea></td>
+						</tr>
+						<tr>
+							<td><input type="submit" class="btn btn-success" value="Add Event &raquo;"/></td>
+							<td><input type="reset" class="btn btn-danger" value="Reset Data"/></td>
+						</tr>
+					</table>
+			</form>
+		</div>
+		<div class="col-sm-3"></div>
+	</div>
+	</div>
+</div>
+</body>
+</html>

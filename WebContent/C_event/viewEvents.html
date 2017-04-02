@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<title>View Events</title>
+
+<style>
+body
+{
+    background-image: url("images/event1.jpg");
+    background-repeat: no-repeat;
+    background-size: 100%; 
+    background-attachment: fixed;
+}
+.table
+{
+    background-image: url("images/white.jpg");
+    background-repeat: no-repeat;
+    background-size: 100%; 
+    background-attachment: fixed;
+}
+</style>
+</head>
+<body>
+<h1 style="text-align: center; color: black"><strong>View Upcoming Events</strong></h1>
+	<div class="container">
+		<div class="row" data-ng-repeat="e in events">
+			<div class="col-sm-1"></div>
+			<div class="col-sm-10">
+				<table class="table" style="box-shadow: 5px 5px 5px #888888;">
+					<tr>
+						<td width="500px"><h3 style="color: black;">{{e.name}}</h3></td>
+					</tr>
+					<tr>
+						<td colspan="2"><strong>Date:</strong> {{e.eventDate}}</td>
+						<td><strong>Time:</strong> {{e.time}}</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td colspan="2"><strong>Event Venue:</strong> {{e.venue}}</td>
+						<td><strong>Posted at:</strong> {{e.postedTime}}</td>
+					</tr>					
+					<tr>
+						<td colspan="3"><strong>Description:</strong> {{e.description}}</td>
+					</tr>
+				</table>
+			</div>
+			<div class="col-sm-1"></div>
+		</div>
+	</div>
+</body>
+</html>

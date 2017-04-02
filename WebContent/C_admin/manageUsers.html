@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<title>Insert title here</title>
+<style type="text/css">
+body
+{
+    background-image: url("images/admin.jpg");
+    background-repeat: no-repeat;
+    background-size: 100%; 
+    background-attachment: fixed;
+}
+.row
+{
+    background-image: url("images/white.jpg");
+    background-repeat: no-repeat;
+    background-size: 100%; 
+    background-attachment: fixed;
+}
+</style>
+</head>
+<body>
+<div data-ng-controller='AdminController as ctrl'>
+<h2 style="text-align: center; color: white"><strong>View All Users</strong></h2>
+<div class="container2" data-ng-if="users"  data-ng-repeat="u in users">
+<br>
+	<div class="row" style=" box-shadow: 5px 5px 5px #000;">
+		
+		<div data-ng-if="currentUser.username != u.username">
+		<br>		
+		<div class="col-sm-9">
+			<table class="table table-hover table-responsive">
+				<tr>
+					<td style="color: black"><h5><strong>UserName:</strong> {{u.username}}</h5></td>
+					<td style="color: black"><h5><strong>Mail ID:</strong> {{u.mail_id}}</h5></td>
+				</tr>
+				<tr>
+					<td style="color: black"><h4><strong>Name:</strong> {{u.first_name}} {{u.last_name}}</h4></td>
+					<td style="color: black"><h5><strong>Role:</strong> {{u.role}}</h5></td>
+				</tr>
+				<tr>
+					<td data-ng-if="u.status == 'A'" style="color: black"><h5><strong>Status:</strong> ACCEPTED</h5></td>
+					
+					<td data-ng-if="u.status == 'N'" style="color: black"><h5><strong>Status:</strong> NEW USER</h5></td>
+					
+					<td data-ng-if="u.status == 'R'" style="color: black"><h5><strong>Status:</strong> REJECTED</h5></td>
+				</tr>
+			</table>					
+		</div>
+		<div class="col-sm-3">
+		<table class="table table-hover">
+		<tr>
+			<td><a data-ng-if="u.status != 'A'" class="btn btn-success btn-md" href="" data-ng-click="ctrl.acceptUser(u)" class="btn">ACCEPT USER</a></td>	
+		</tr>
+		<tr>
+			<td><a data-ng-if="u.status != 'R'" class="btn btn-danger btn-md" href="" data-ng-click="ctrl.rejectUser(u)" class="btn">REJECT USER</a></td>
+		</tr>
+		</table>
+		</div>
+		</div>
+	</div>
+</div>
+<div>
+	<h2> {{message}} </h2>
+</div>
+</div>
+</body>
+</html>

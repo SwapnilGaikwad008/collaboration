@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<style type="text/css">
+body
+{
+    background-image: url("images/white.jpg");
+    background-repeat: no-repeat;
+    background-size: 100%; 
+    background-attachment: fixed;
+}
+</style>
+</head>
+<body>
+<div class="container">
+		<div class="row">
+			<div class="col-sm-4">
+				<h2 style="text-align: center;">{{friend.first_name}} {{friend.last_name}}</h2>
+				<p style="text-align: center;"><img data-ng-src="images/{{friend.username}}" onerror="this.src='images/profilepic.png'" height="250" width="250"></p>
+			</div>
+			<div class="col-sm-8">
+				<table class="table table-striped">
+			    		
+			    		<tr>
+							<th> UserName: </th>
+							<td> {{friend.username}}</td>
+			    		</tr>
+			    		<tr>
+							<th> </th>
+							<td> </td>
+			    		</tr>
+			    		
+			    		<tr>
+							<th> Name: </th>
+							<td> {{friend.first_name}} {{friend.last_name}}</td>
+			    		</tr>
+			    		<tr>
+							<th> </th>
+							<td> </td>
+			    		</tr>
+			    		
+			    		<tr>
+							<th> E-Mail ID: </th>
+							<td> {{friend.mail_id}}</td>
+			    		</tr>
+			    		<tr>
+							<th> </th>
+							<td> </td>
+			    		</tr>
+			    		
+			    		<tr data-ng-if="friend.birthdate">
+							<th> Birthday: </th>
+							<td> {{friend.birthdate}}</td>
+			    		</tr>
+			    		<tr data-ng-if="friend.birthdate">
+			    			<th> </th>
+							<td> </td>
+			    		</tr>
+			    		
+			    		<tr>
+							<th> Gender: </th>
+							<td> 
+								<p data-ng-if="friend.gender == 'M'">Male</p>
+								<p data-ng-if="friend.gender == 'F'">Female</p>
+							</td>
+			    		</tr>
+			    		<tr>
+							<th> </th>
+							<td> </td>
+			    		</tr>
+			    		
+			    		<tr>
+							<th> Position: </th>
+							<td> {{friend.role}}</td>
+			    		</tr>
+			    		<tr>
+							<th> </th>
+							<td> </td>
+			    		</tr>
+			    		
+			    		<tr>
+							<th> Last Seen at: </th>
+							<td> {{friend.last_seen}}</td>
+			    		</tr>
+			    		<tr>
+							<th> </th>
+							<td> </td>
+			    		</tr>
+			    		
+			    		<tr>
+							<th> Online Status: </th>
+							<td data-ng-if="friend.isOnline == 'Y'"> Currently Online</td>
+							<td data-ng-if="friend.isOnline == 'N'"> Currently Offline</td>
+			    		</tr>
+			    	</table>
+				    </div>
+			</div>
+</div>
+</body>
+</html>

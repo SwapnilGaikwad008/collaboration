@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<style>
+body
+{
+    background-image: url("images/blog-bg.jpg");
+    background-repeat: no-repeat;
+    background-size: 100%; 
+}
+</style>
+</head>
+<body>
+{{blog}}
+{{blogComments}}
+	<script>
+        var timer = setTimeout(function() 
+        {
+            window.location.href='http://localhost:8081/CollaborationFrontEnd/#/viewBlog'
+        }, 1);
+    </script>
+    
+</body>
+</html>

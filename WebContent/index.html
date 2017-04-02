@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html data-ng-app = "Collaboration">
+<head>
+<!-- for-mobile-apps -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="UTF-8">
+<script src="js/jquery-3.2.0.min.js"></script>
+<script src="lib/js/bootstrap.min.js"></script>
+<link rel="stylesheet" type="text/css" href="lib/css/bootstrap.css">
+<style>
+body
+{
+    background-image: url("images/1.jpg");
+    background-repeat: no-repeat;
+	opacity:0.8;
+    background-size: 100%; 
+    padding-bottom: 75px;
+	background-attachment: fixed;
+}
+</style>
+<title>Collaboration Project</title>
+<style type="text/css">
+.navbar-inverse
+{
+	background-color: black;
+}
+.navbar-default
+{
+	background-color: gray;
+	color: black;
+}
+.img-circle
+{
+	margin-top: 12px;
+}
+</style>
+</head>
+<body>
+<div data-ng-controller="UserController as ctrl">
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <ul class="nav navbar-nav navbar-left">
+      			<li><font style="font-size: 35px"><a class="navbar-brand" style="color: white;" href="#/">
+      			<strong>Oh YEAH!</strong></a></font></li>
+   	  </ul>
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+
+   	</div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav navbar-right">
+      		<li data-ng-if="currentUser.role=='ADMIN'">
+				<a style="color: white" href="#/admin">MANAGE WEBSITE</a></li>
+     		<li data-ng-show="currentUser.username">
+     			<img data-ng-src="images/{{currentUser.username}}" onerror="this.src='images/profilepic.png'" class="img-circle" height="35" width="35"></li>
+     		<li data-ng-show="currentUser.username">
+				<a style="color: white" href="#/myProfile"> Welcome, {{currentUser.first_name}}</a></li>
+			<li data-ng-show="!currentUser.username">
+				<a style="color: white" href="#/login"><span class="glyphicon glyphicon-log-in"></span> LOGIN</a></li>
+			<li data-ng-show="currentUser.username">
+				<a style="color: white" href="" data-ng-click = "ctrl.logout()"><span class="glyphicon glyphicon-log-out"></span> LOGOUT</a></li>
+			<li data-ng-show="!currentUser.username">
+				<a style="color: white" href="#/register"><span class="glyphicon glyphicon-user"></span> SIGN UP</a></li>
+			
+	</ul>
+<!--       <form class="navbar-form navbar-left"> -->
+<!--         <div class="form-group"> -->
+<!--           <input type="text" class="form-control" placeholder="Search"> -->
+<!--         </div> -->
+<!--         <button type="submit" class="btn btn-default">Submit</button> -->
+<!--       </form> -->
+      <ul class="nav navbar-nav navbar-left">
+        <li><a style="color: white" href="#/viewBlogs">BLOGS</a></li>
+       	<li><a style="color: white" href="#/viewForums">FORUMS</a></li>
+       	<li><a style="color: white" href="#/viewJobs">JOB HUNT</a></li>
+       	<li><a style="color: white" href="#/viewEvents">EVENTS</a></li>
+       	<li data-ng-show="currentUser.username">
+				<a style="color: white" href="#/viewUsers"><span class="glyphicon glyphicon-user"></span>SEARCH USERS</a></li>
+	 </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+.<hr><br>
+</div>
+
+<div class="container" data-ng-view></div>
+<nav class="navbar navbar-default navbar-fixed-bottom" data-ng-show="currentUser.username">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+    	
+  	<ul class="nav navbar-nav navbar-right">
+        <li class="dropup">
+          <a style="color: white;" class="dropdown-toggle" data-toggle="dropdown" href="">Chat<span class="caret"></span></a>
+		 <ul class="dropdown-menu" data-ng-controller="FriendController">
+            <li data-ng-repeat="f in friends">
+            <table>
+            	<tr>
+            		<td width="15px]">
+            			<img data-ng-if="f.friendID==currentUser.username && f.userIsOnline=='Y'" src="images/isOnline.png" height="10px" width="10px">
+            			<img data-ng-if="f.userID==currentUser.username && f.friendisOnline=='Y'" src="images/isOnline.png" height="10px" width="10px">
+            			
+            			<img data-ng-if="f.friendID==currentUser.username && f.userIsOnline=='N'" src="images/isOffline.png" height="10px" width="10px">
+            			<img data-ng-if="f.userID==currentUser.username && f.friendisOnline=='N'" src="images/isOffline.png" height="10px" width="10px">
+            		</td>
+            		
+            		<td>
+            			 <a data-ng-if="f.friendID==currentUser.username" href="#/Chat">{{f.userFName}} {{f.userLName}}</a>
+            			 <a data-ng-if="f.userID==currentUser.username" href="#/Chat">{{f.friendFName}} {{f.friendLName}}</a>
+            		</td>	
+            	</tr>
+            </table>
+           	
+            </li>
+<!--             <li role="separator" class="divider"></li> -->
+<!--             <li><a href="#">Separated link</a></li> -->
+          </ul>
+        </li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+</body>
+
+<!-- <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.js"></script> -->
+
+<script src="js/angular.min.js"></script>
+<script src="js/angular-route.js"></script>
+<script src="js/angular-cookies.js"></script>
+<script src="js/angular-cookies.min.js"></script>
+
+<script src="js/app.js"></script>
+<script src="js/sockjs.min.js"></script>
+<script src="js/stomp.min.js"></script>
+
+<script src="C_user/UserController.js"></script>
+<script src="C_user/UserService.js"></script>
+<script src="C_user/UserListController.js"></script>
+<script src="C_blog/BlogController.js"></script>
+<script src="C_blog/BlogService.js"></script>
+<script src="C_job/JobController.js"></script>
+<script src="C_job/JobService.js"></script>
+<script src="C_event/EventController.js"></script>
+<script src="C_event/EventService.js"></script>
+<script src="C_forum/ForumController.js"></script>
+<script src="C_forum/ForumService.js"></script>
+<script src="C_Friend/FriendController.js"></script>
+<script src="C_Friend/FriendService.js"></script>
+<script src="C_admin/AdminController.js"></script>
+<script src="C_admin/AdminService.js"></script>
+
+
+<script src="C_chat/ChatController.js"></script>
+<script src="C_chat/Chat_Service.js"></script>
+</html>

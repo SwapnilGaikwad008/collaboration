@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<title>Register - User</title>
+<link rel="stylesheet" href="lib/css/default.css">
+
+<style>
+body
+{
+    background-image: url("images/signup.jpg");
+    background-repeat: no-repeat;
+    background-size: cover; 
+}
+</style>
+</head>
+<body>
+
+<div data-ng-controller = "UserController as ctrl">
+<form class="register" data-ng-submit="ctrl.registerUser()" role="form">
+     <h1>Register Here</h1>
+            <fieldset class="row1">
+                <legend>Account Details</legend>
+                <p>
+                    <label>UserName *</label>
+                  	<input type="text" placeholder="Choose a UserName" required="required" id="username" data-ng-model="user.username" maxlength="50"/>
+                    <label>Email ID *</label>
+                    <input type="text" placeholder="Your Mail ID" required="required" id="mail_id" data-ng-model="user.mail_id" maxlength="200"/>
+                </p>
+                <p>
+                    <label>Password*</label>
+                    <input type="password" placeholder="Choose a Password" required="required" id="password1" data-ng-model="user.password" maxlength="25">
+                    <label>Repeat Password*</label>
+                    <input type="password" placeholder="Confirm Password" required="required" id="password2" data-ng-model="verifyPassword" maxlength="25">
+                    <label class="obinfo">* Required Fields
+                    </label>
+                </p>
+            </fieldset>
+            <fieldset class="row2">
+                <legend>Personal Details</legend>
+                <p>
+                    <label>First Name *</label>
+                   	<input type="text" placeholder="Your Name" required="required" id="first_name" data-ng-model="user.first_name" maxlength="100"/>
+                </p>
+				<p>
+					<label class="optional">Last Name</label>
+                    <input type="text" placeholder="Your Last Name" required="required" id="last_name" data-ng-model="user.last_name" maxlength="100"/>
+                </p>
+                <p>
+                    <label>Role *</label>
+                    <select data-ng-model='user.role' required="required">
+                        <option value="STUDENT">STUDENT</option>
+                        <option value="ALUMINI">ALUMINI</option>
+                        <option value="FACULTY">FACULTY</option>
+                    </select>
+                </p>
+            </fieldset>
+            <fieldset class="row3">
+                <legend>Further Information
+                </legend>
+                <p>
+                    <label>Gender *</label>
+                    <input type="radio" name="gender" data-ng-model='user.gender' value="M" checked="checked"/>
+                    <label class="gender">Male</label>
+                    <input type="radio" name="gender" data-ng-model='user.gender' value="F"/>
+                    <label class="gender">Female</label>
+                </p>
+                <p>
+                    <label>Birthdate *</label>
+                    <input type="date" data-ng-model="user.dob" placeholder="DD/MM/YYYY format only">
+                </p>
+                <div class="infobox"><h4>Helpful Information</h4>
+                    <p>Some Web-Browsers may not be able to save your Date of Birth, if DOB is not displayed after registeration, Please use GOOGLE CHROME</p>
+                </div>
+            </fieldset>
+
+            <div><input type="submit" class="button" value="Register &raquo;"></div>
+        </form>
+</div>
+</body>
+</html>

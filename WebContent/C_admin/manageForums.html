@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<title>Insert title here</title>
+<style type="text/css">
+body
+{
+    background-image: url("images/admin.jpg");
+    background-repeat: no-repeat;
+    background-size: 100%; 
+    background-attachment: fixed;
+}
+.row
+{
+    background-image: url("images/white.jpg");
+    background-repeat: no-repeat;
+    background-size: 100%; 
+    background-attachment: fixed;
+}
+</style>
+</head>
+<body>
+<h1 style="text-align: center; color: white"><strong>Manage Forums</strong></h1>
+<div data-ng-controller="AdminController as ctrl">
+<div class="container" data-ng-if="forums"  data-ng-repeat="f in forums">
+<br>
+	<div class="row" style=" box-shadow: 5px 5px 5px #000;">
+				
+		<div class="col-sm-9">
+			<table class="table table-responsive">
+				<tr>
+					<td style="color: black"><h4><strong>{{f.forum_id}}</strong></h4></td>
+				</tr>
+				<tr>
+					<td data-ng-if="f.status == 'A'" style="color: black">STATUS - Accepted</td>
+					<td data-ng-if="f.status == 'P'" style="color: black">STATUS - Pending</td>
+					<td data-ng-if="f.status == 'U'" style="color: black">STATUS - Updated</td>
+					<td data-ng-if="f.status == 'R'" style="color: black">STATUS - Rejected</td>
+				</tr>
+				<tr>
+					<td style="color: black">{{f.description}}</td>
+				</tr>
+			</table>					
+		</div>
+		<div class="col-sm-3">
+		<table class="table table-hover">
+		<tr>
+			<td style="text-align: center;"><a data-ng-if="f.status != 'A'" class="btn btn-success btn-md" href="" data-ng-click="ctrl.acceptForum(f)" class="btn">ACCEPT FORUM</a></td>	
+		</tr>
+		<tr>
+			<td style="text-align: center;"><a data-ng-if="f.status != 'R'" class="btn btn-danger btn-md" href="" data-ng-click="ctrl.rejectForum(f)" class="btn">REJECT FORUM</a></td>
+		</tr>
+		</table>
+		</div>
+	</div>
+</div>
+</div>
+</body>
+</html>
