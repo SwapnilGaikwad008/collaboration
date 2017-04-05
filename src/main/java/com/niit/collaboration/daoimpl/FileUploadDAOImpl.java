@@ -36,7 +36,6 @@ public class FileUploadDAOImpl implements FileUploadDAO
 	}
 
 
-	@SuppressWarnings("rawtypes")
 	@Transactional
 	public void save(FileUpload fileUpload, String username) 
 	{

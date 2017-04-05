@@ -9,6 +9,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
+import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBuilder;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
@@ -85,4 +86,20 @@ public class ApplicationContextConfiguration
 			HibernateTransactionManager transactionManager = new HibernateTransactionManager(sessionFactory);
 			return transactionManager;
 		}
+		
+		@Bean
+		public JavaMailSenderImpl javaMailSenderImpl(){
+			JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
+			mailSender.setHost("smtp.gmail.com");
+			mailSender.setPort(587);
+			mailSender.setUsername("swapgaik9811@gmail.com");
+			mailSender.setPassword("swapnil123");
+			Properties prop = mailSender.getJavaMailProperties();
+			prop.put("mail.transport.protocol", "smtp");
+			prop.put("mail.smtp.auth", "true");
+			prop.put("mail.smtp.starttls.enable", "true");
+			prop.put("mail.debug", "true");
+			return mailSender;
+		}
+		
 }

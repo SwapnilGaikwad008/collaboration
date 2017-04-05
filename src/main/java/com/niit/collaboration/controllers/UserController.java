@@ -4,18 +4,24 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.List;
 
+import javax.mail.MessagingException;
+import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.mail.javamail.JavaMailSenderImpl;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.niit.collaboration.config.MailConfig;
 import com.niit.collaboration.dao.FriendDAO;
 import com.niit.collaboration.dao.UserDAO;
 import com.niit.collaboration.model.User;
@@ -127,13 +133,29 @@ public class UserController
 	}
 
 	@PostMapping("/add_User")
-	public ResponseEntity<User> addUser(@RequestBody User user) 
+	public ResponseEntity<User> addUser(@RequestBody User user) throws MessagingException
 	{	    
 	    user.setStatus('N');
 	    user.setIsOnline('N');
 		boolean value = userDAO.addUser(user);
 		if (value == true) 
 		{
+			userDAO.addUser(user);
+			
+			@SuppressWarnings("resource")
+			AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext();
+			   ctx.register(MailConfig.class);
+			   ctx.refresh();
+			  
+			   JavaMailSenderImpl mailSender = ctx.getBean(JavaMailSenderImpl.class);
+			   MimeMessage mimeMessage = mailSender.createMimeMessage();
+		      	   MimeMessageHelper mailMsg = new MimeMessageHelper(mimeMessage);
+		      	   mailMsg.setFrom("swapgaik9811@gmail.com");
+		      	   mailMsg.setTo(user.getMail_id());
+		      	   mailMsg.setSubject("Activated");
+		      	   mailMsg.setText("You are successfully registered");
+			   mailSender.send(mimeMessage);
+			   
 			user.setErrorCode("200");
 			user.setErrorMsg("User added Successfully");
 		} 
